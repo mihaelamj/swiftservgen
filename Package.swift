@@ -9,11 +9,19 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.32.0"),
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "swiftservgen",
             dependencies: [
                 .product(name: "NIO", package: "swift-nio"),
                 .product(name: "NIOHTTP1", package: "swift-nio"),
             ]),
+        .testTarget(
+            name: "swiftservgenTests",
+            dependencies: ["swiftservgen"],
+            resources: [
+                // Define any test resources.
+                // .process("TestResources")
+            ]
+        ),
     ]
 )

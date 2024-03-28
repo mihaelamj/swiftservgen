@@ -25,13 +25,13 @@ final class HTTPHandler: ChannelInboundHandler {
             let response: String
             
             switch command {
-            case "int":
+            case .int:
                 if let count = count {
                     response = "\(Generator.generateInts(count: count))"
                 } else {
                     response = "\(Generator.generateInt())"
                 }
-            case "string":
+            case .string:
                 if let count = count {
                     response = Generator.generateStrings(count: count).joined(separator: ", ")
                 } else {

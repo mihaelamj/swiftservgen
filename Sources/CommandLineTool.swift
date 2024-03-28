@@ -22,9 +22,9 @@ struct CommandLineTool {
             let (command, count) = Parser.parseCLIArgument(arg)
             
             switch command {
-            case "int":
+            case .int:
                 processIntCommand(count: count)
-            case "string":
+            case .string:
                 processStringCommand(count: count)
             default:
                 print("Unsupported command: \(arg)")
@@ -49,9 +49,9 @@ struct CommandLineTool {
             let (command, count) = Parser.parseCLIArgument(arg)
             
             switch command {
-            case "int":
+            case .int:
                 processIntCommand(count: count)
-            case "string":
+            case .string:
                 processStringCommand(count: count)
             default:
                 print("Unsupported command: \(arg)")

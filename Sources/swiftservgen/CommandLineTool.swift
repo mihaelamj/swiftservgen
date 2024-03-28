@@ -120,4 +120,8 @@ struct CommandLineTool {
  .build/debug/YourSwiftPackage --help
  .build/debug/YourSwiftPackage int[10] string[5]
  ```
+ 
+ -- yml -my.yml
+ 
+ /int[1000] /page:3
  */

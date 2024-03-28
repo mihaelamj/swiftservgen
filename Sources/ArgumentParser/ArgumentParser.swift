@@ -1,8 +1,8 @@
 //
-//  Parsing.swift
+//  ArgumentParser.swift
+//  
 //
-//
-//  Created by Mihaela MJ on 23.03.2024..
+//  Created by Mihaela MJ on 28.03.2024..
 //
 
 /**
@@ -15,24 +15,24 @@
 
 import Foundation
 
-public enum CommandType {
-    case int
-    case string
+public struct ArgumentParser {
     
-    /// Initializes a CommandType from a string value, if possible.
-    init?(from string: String) {
-        switch string {
-        case "int":
-            self = .int
-        case "string":
-            self = .string
-        default:
-            return nil
+    public enum CommandType {
+        case int
+        case string
+        
+        /// Initializes a CommandType from a string value, if possible.
+        init?(from string: String) {
+            switch string {
+            case "int":
+                self = .int
+            case "string":
+                self = .string
+            default:
+                return nil
+            }
         }
     }
-}
-
-public struct Parser {
     /// Parses a string input to determine the requested action and any numerical parameters.
      /// The input can be a URI from an HTTP request or a command-line argument.
      /// - Parameter input: The string input to parse.
@@ -60,7 +60,10 @@ public struct Parser {
         // Return nil if no known command is detected or parsing fails
         return (nil, nil)
     }
+}
 
+public extension ArgumentParser {
+    
     /// Parses the URI from an HTTP request using the shared parsing logic.
     /// - Parameter uri: The URI string from the HTTP request.
     /// - Returns: A tuple of the command and an optional count.
@@ -74,4 +77,5 @@ public struct Parser {
     static func parseCLIArgument(_ arg: String) -> (command: CommandType?, count: Int?) {
         return parseInput(arg)
     }
+    
 }

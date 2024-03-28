@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import ArgumentParser
+import StuffGenerator
 
 struct CommandLineTool {
     
@@ -19,7 +21,7 @@ struct CommandLineTool {
         
         // Process each argument
         for arg in args {
-            let (command, count) = Parser.parseCLIArgument(arg)
+            let (command, count) = ArgumentParser.parseCLIArgument(arg)
             
             switch command {
             case .int:
@@ -46,7 +48,7 @@ struct CommandLineTool {
         
         // Process each argument
         for arg in args {
-            let (command, count) = Parser.parseCLIArgument(arg)
+            let (command, count) = ArgumentParser.parseCLIArgument(arg)
             
             switch command {
             case .int:
@@ -64,10 +66,10 @@ struct CommandLineTool {
     /// - Parameter count: The optional count of integers to generate.
     private static func processIntCommand(count: Int?) {
         if let count = count {
-            let numbers = Generator.generateInts(count: count)
+            let numbers = StuffGenerator.generateInts(count: count)
             print(numbers)
         } else {
-            let number = Generator.generateInt()
+            let number = StuffGenerator.generateInt()
             print(number)
         }
     }
@@ -76,10 +78,10 @@ struct CommandLineTool {
     /// - Parameter count: The optional count of strings to generate.
     private static func processStringCommand(count: Int?) {
         if let count = count {
-            let strings = Generator.generateStrings(count: count)
+            let strings = StuffGenerator.generateStrings(count: count)
             print(strings.joined(separator: ", "))
         } else {
-            let string = Generator.generateString()
+            let string = StuffGenerator.generateString()
             print(string)
         }
     }

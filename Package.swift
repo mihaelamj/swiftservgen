@@ -5,16 +5,27 @@ import PackageDescription
 
 let package = Package(
     name: "swiftservgen",
+    products: [
+        .library(name: "ArgumentParser", targets: ["ArgumentParser"]),
+        .library(name: "StuffGenerator", targets: ["StuffGenerator"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.32.0"),
     ],
     targets: [
+        .target(
+            name: "ArgumentParser"),
+        
+        .target(
+            name: "StuffGenerator"),
+        
         .executableTarget(
             name: "swiftservgen",
             dependencies: [
                 .product(name: "NIO", package: "swift-nio"),
                 .product(name: "NIOHTTP1", package: "swift-nio"),
             ]),
+        
         .testTarget(
             name: "swiftservgenTests",
             dependencies: ["swiftservgen"],
@@ -23,5 +34,14 @@ let package = Package(
                 // .process("TestResources")
             ]
         ),
+        
+        .testTarget(
+            name: "ArgumentParserTests",
+            dependencies: ["ArgumentParser"]
+        ),
+        
+        .testTarget(
+            name: "StuffGeneratorTests",
+            dependencies: ["StuffGenerator"]),
     ]
 )

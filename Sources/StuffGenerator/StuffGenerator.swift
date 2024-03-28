@@ -1,5 +1,5 @@
 //
-//  Generator.swift
+//  StuffGenerator.swift
 //
 //
 //  Created by Mihaela MJ on 23.03.2024..
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Generator {
+struct StuffGenerator {
     /// Generates a random integer within a specified range.
     /// - Parameters:
     ///   - range: The range within which to generate the integer. Default is 1...100.

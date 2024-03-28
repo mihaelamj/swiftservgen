@@ -8,6 +8,8 @@
 import Foundation
 import NIO
 import NIOHTTP1
+import ArgumentParser
+import StuffGenerator
 
 final class HTTPHandler: ChannelInboundHandler {
     typealias InboundIn = HTTPServerRequestPart
@@ -21,21 +23,21 @@ final class HTTPHandler: ChannelInboundHandler {
         switch reqPart {
         case .head(let request):
             buffer = context.channel.allocator.buffer(capacity: 0)  // Reset the buffer for a new request
-            let (command, count) = Parser.parseURI(request.uri)
+            let (command, count) = ArgumentParser.parseURI(request.uri)
             let response: String
             
             switch command {
             case .int:
                 if let count = count {
-                    response = "\(Generator.generateInts(count: count))"
+                    response = "\(StuffGenerator.generateInts(count: count))"
                 } else {
-                    response = "\(Generator.generateInt())"
+                    response = "\(StuffGenerator.generateInt())"
                 }
             case .string:
                 if let count = count {
-                    response = Generator.generateStrings(count: count).joined(separator: ", ")
+                    response = StuffGenerator.generateStrings(count: count).joined(separator: ", ")
                 } else {
-                    response = Generator.generateString()
+                    response = StuffGenerator.generateString()
                 }
             default:
                 response = "Unsupported operation"

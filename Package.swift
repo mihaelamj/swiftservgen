@@ -14,16 +14,20 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "ArgumentParser"),
+            name: "ArgumentParser", 
+            dependencies: []),
         
         .target(
-            name: "StuffGenerator"),
+            name: "StuffGenerator", 
+            dependencies: []),
         
         .executableTarget(
             name: "swiftservgen",
             dependencies: [
                 .product(name: "NIO", package: "swift-nio"),
                 .product(name: "NIOHTTP1", package: "swift-nio"),
+                "ArgumentParser",
+                "StuffGenerator"
             ]),
         
         .testTarget(

@@ -23,7 +23,7 @@ public struct ArgumentParser {
         
         /// Initializes a CommandType from a string value, if possible.
         init?(from string: String) {
-            switch string {
+            switch string.lowercased() {
             case "int":
                 self = .int
             case "string":

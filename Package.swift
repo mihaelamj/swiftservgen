@@ -24,10 +24,10 @@ let package = Package(
         .executableTarget(
             name: "swiftservgen",
             dependencies: [
-                .product(name: "NIO", package: "swift-nio"),
-                .product(name: "NIOHTTP1", package: "swift-nio"),
-                "ArgumentParser",
-                "StuffGenerator"
+                .product(name: "NIO", package: "swift-nio"), // External dependency from swift-nio package
+                .product(name: "NIOHTTP1", package: "swift-nio"), // External dependency from swift-nio package
+                "ArgumentParser", // Internal library target dependency
+                "StuffGenerator" // Internal library target dependency
             ]),
         
         .testTarget(
